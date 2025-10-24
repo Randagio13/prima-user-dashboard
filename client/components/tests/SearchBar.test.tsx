@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { useState } from "react"
 import { describe, expect, it } from "vitest"
@@ -40,5 +40,25 @@ describe("SearchBar", () => {
     expect(handleChange).toHaveBeenNthCalledWith(1, "B")
     expect(handleChange).toHaveBeenNthCalledWith(2, "o")
     expect(handleChange).toHaveBeenNthCalledWith(3, "b")
+  })
+
+  it("focuses the input when Cmd+K is pressed", async () => {
+    render(<Wrapper />)
+
+    const input = screen.getByRole("textbox", { name: /search users/i })
+    expect(input).not.toHaveFocus()
+
+    fireEvent.keyDown(window, { key: "k", metaKey: true })
+    expect(input).toHaveFocus()
+  })
+
+  it("also focuses the input when Ctrl+K is pressed", async () => {
+    render(<Wrapper />)
+
+    const input = screen.getByRole("textbox", { name: /search users/i })
+    expect(input).not.toHaveFocus()
+
+    fireEvent.keyDown(window, { key: "k", ctrlKey: true })
+    expect(input).toHaveFocus()
   })
 })

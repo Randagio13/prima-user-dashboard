@@ -79,6 +79,51 @@ npm run test:coverage
 ```
 
 Vitest configuration lives in `vite.config.ts` under the `test` key, and a global setup is defined in `vitest.setup.ts`.
+
+## E2E Testing
+
+This project uses Playwright for end-to-end testing.
+
+- Test files are in the `e2e/` directory with `*.spec.ts` extension.
+- Tests run against a local dev server automatically.
+
+### Install Playwright
+
+If not already installed:
+
+```bash
+npm install -D @playwright/test playwright
+npx playwright install
+```
+
+### Run E2E tests
+
+Run all tests (headless):
+
+```bash
+npm run test:e2e
+```
+
+Run with UI mode (interactive):
+
+```bash
+npm run test:e2e:ui
+```
+
+Run in headed mode (see browser):
+
+```bash
+npm run test:e2e:headed
+```
+
+View test report:
+
+```bash
+npm run test:e2e:report
+```
+
+Playwright configuration is in `playwright.config.ts`.
+
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
