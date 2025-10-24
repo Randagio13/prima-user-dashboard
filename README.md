@@ -45,6 +45,40 @@ export default defineConfig([
 ])
 ```
 
+## Testing
+
+This project uses Vitest and Testing Library for unit tests.
+
+- Files under `client/**/__tests__/*.test.tsx` are discovered automatically.
+- The test environment is jsdom and includes `@testing-library/jest-dom` matchers.
+
+### Install test dependencies
+
+If not already installed, add the dev dependencies:
+
+```bash
+npm install -D vitest jsdom @testing-library/react @testing-library/user-event @testing-library/jest-dom @vitest/coverage-v8
+```
+
+### Run tests
+
+```bash
+npm test
+```
+
+Watch mode:
+
+```bash
+npm run test:watch
+```
+
+Coverage report:
+
+```bash
+npm run test:coverage
+```
+
+Vitest configuration lives in `vite.config.ts` under the `test` key, and a global setup is defined in `vitest.setup.ts`.
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
