@@ -14,7 +14,6 @@ const ITEMS_PER_PAGE = 10
 
 async function fetchUsers(): Promise<User[]> {
   const response = await fetch("/api/users")
-  console.log("Fetched users response:", response)
   if (!response.ok) {
     throw new Error("Failed to fetch users")
   }
@@ -26,7 +25,6 @@ export default function Dashboard() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null)
   const [isDetailOpen, setIsDetailOpen] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  console.log("Rendering Dashboard - currentPage:", currentPage, isDetailOpen)
   const {
     data: users = [],
     isLoading,
