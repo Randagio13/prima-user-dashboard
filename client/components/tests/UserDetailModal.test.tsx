@@ -58,14 +58,14 @@ describe("UserDetailModal", () => {
   it("renders user role with correct badge", () => {
     render(<UserDetailModal {...defaultProps} />)
 
-    const roleBadges = screen.getAllByRole("button", { name: "Admin" })
+    const roleBadges = screen.getAllByText("Admin")
     expect(roleBadges.length).toBeGreaterThan(0)
   })
 
   it("renders user status with correct badge", () => {
     render(<UserDetailModal {...defaultProps} />)
 
-    const statusBadges = screen.getAllByRole("button", { name: "Active" })
+    const statusBadges = screen.getAllByText("Active")
     expect(statusBadges.length).toBeGreaterThan(0)
   })
 
@@ -78,7 +78,7 @@ describe("UserDetailModal", () => {
   it("applies correct role colors for Admin", () => {
     render(<UserDetailModal {...defaultProps} />)
 
-    const roleBadges = screen.getAllByRole("button", { name: "Admin" })
+    const roleBadges = screen.getAllByText("Admin")
     const firstBadge = roleBadges[0]
     expect(firstBadge).toHaveClass("bg-red-100")
     expect(firstBadge).toHaveClass("text-red-800")
@@ -88,7 +88,7 @@ describe("UserDetailModal", () => {
     const editorUser: User = { ...mockUser, role: "Editor" }
     render(<UserDetailModal {...defaultProps} user={editorUser} />)
 
-    const roleBadges = screen.getAllByRole("button", { name: "Editor" })
+    const roleBadges = screen.getAllByText("Editor")
     const firstBadge = roleBadges[0]
     expect(firstBadge).toHaveClass("bg-blue-100")
     expect(firstBadge).toHaveClass("text-blue-800")
@@ -98,7 +98,7 @@ describe("UserDetailModal", () => {
     const viewerUser: User = { ...mockUser, role: "Viewer" }
     render(<UserDetailModal {...defaultProps} user={viewerUser} />)
 
-    const roleBadges = screen.getAllByRole("button", { name: "Viewer" })
+    const roleBadges = screen.getAllByText("Viewer")
     const firstBadge = roleBadges[0]
     expect(firstBadge).toHaveClass("bg-gray-100")
     expect(firstBadge).toHaveClass("text-gray-800")
@@ -107,7 +107,7 @@ describe("UserDetailModal", () => {
   it("applies correct status colors for Active", () => {
     render(<UserDetailModal {...defaultProps} />)
 
-    const statusBadges = screen.getAllByRole("button", { name: "Active" })
+    const statusBadges = screen.getAllByText("Active")
     const firstBadge = statusBadges[0]
     expect(firstBadge).toHaveClass("bg-green-100")
     expect(firstBadge).toHaveClass("text-green-800")
@@ -117,7 +117,7 @@ describe("UserDetailModal", () => {
     const inactiveUser: User = { ...mockUser, status: "Inactive" }
     render(<UserDetailModal {...defaultProps} user={inactiveUser} />)
 
-    const statusBadges = screen.getAllByRole("button", { name: "Inactive" })
+    const statusBadges = screen.getAllByText("Inactive")
     const firstBadge = statusBadges[0]
     expect(firstBadge).toHaveClass("bg-red-100")
     expect(firstBadge).toHaveClass("text-red-800")

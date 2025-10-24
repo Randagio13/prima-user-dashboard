@@ -13,23 +13,23 @@ test.describe("User Dashboard", () => {
 
   test("should load and display users", async ({ page }) => {
     // Wait for users to load
-    await expect(page.getByRole("option").first()).toBeVisible({
+    await expect(page.getByRole("button").first()).toBeVisible({
       timeout: 10000,
     })
 
     // Check that at least one user is displayed
-    const users = page.getByRole("option")
+    const users = page.getByRole("button")
     await expect(users).not.toHaveCount(0)
   })
 
   test("should search for users by name", async ({ page }) => {
     // Wait for users to load
-    await expect(page.getByRole("option").first()).toBeVisible({
+    await expect(page.getByRole("button").first()).toBeVisible({
       timeout: 10000,
     })
 
     // Get initial count
-    const initialCount = await page.getByRole("option").count()
+    const initialCount = await page.getByRole("button").count()
 
     // Type in search box
     const searchInput = page.getByRole("textbox", { name: /search users/i })
@@ -39,18 +39,18 @@ test.describe("User Dashboard", () => {
     await page.waitForTimeout(300)
 
     // Check that results are filtered
-    const filteredCount = await page.getByRole("option").count()
+    const filteredCount = await page.getByRole("button").count()
     expect(filteredCount).toBeLessThanOrEqual(initialCount)
   })
 
   test("should filter users by role", async ({ page }) => {
     // Wait for users to load
-    await expect(page.getByRole("option").first()).toBeVisible({
+    await expect(page.getByRole("button").first()).toBeVisible({
       timeout: 10000,
     })
 
     // Get initial user count
-    const initialCount = await page.getByRole("option").count()
+    const initialCount = await page.getByRole("button").count()
 
     // Click on the Admin filter badge in the sidebar (first one, which is the filter)
     const adminFilter = page.getByRole("button", { name: "Admin" }).first()
@@ -60,7 +60,7 @@ test.describe("User Dashboard", () => {
     await page.waitForTimeout(300)
 
     // Check that results are filtered (count should change or stay same)
-    const filteredCount = await page.getByRole("option").count()
+    const filteredCount = await page.getByRole("button").count()
     expect(filteredCount).toBeLessThanOrEqual(initialCount)
   })
 
@@ -68,12 +68,12 @@ test.describe("User Dashboard", () => {
     page,
   }) => {
     // Wait for users to load
-    await expect(page.getByRole("option").first()).toBeVisible({
+    await expect(page.getByRole("button").first()).toBeVisible({
       timeout: 10000,
     })
 
     // Click on first user
-    await page.getByRole("option").first().click()
+    await page.getByRole("button").first().click()
 
     // Wait for modal content to be visible (not just the backdrop)
     await expect(
@@ -88,10 +88,10 @@ test.describe("User Dashboard", () => {
     page,
   }) => {
     // Wait for users to load and open modal
-    await expect(page.getByRole("option").first()).toBeVisible({
+    await expect(page.getByRole("button").first()).toBeVisible({
       timeout: 10000,
     })
-    await page.getByRole("option").first().click()
+    await page.getByRole("button").first().click()
 
     // Wait for modal content to be visible
     const closeButton = page.getByRole("button", {
@@ -108,12 +108,12 @@ test.describe("User Dashboard", () => {
 
   test("should display user information in modal", async ({ page }) => {
     // Wait for users to load
-    await expect(page.getByRole("option").first()).toBeVisible({
+    await expect(page.getByRole("button").first()).toBeVisible({
       timeout: 10000,
     })
 
     // Get user name from list
-    const firstUser = page.getByRole("option").first()
+    const firstUser = page.getByRole("button").first()
     const userName = await firstUser.locator("h3").textContent()
 
     // Click to open modal
@@ -132,7 +132,7 @@ test.describe("User Dashboard", () => {
 
   test("should navigate through pagination", async ({ page }) => {
     // Wait for users to load
-    await expect(page.getByRole("option").first()).toBeVisible({
+    await expect(page.getByRole("button").first()).toBeVisible({
       timeout: 10000,
     })
 
@@ -142,7 +142,7 @@ test.describe("User Dashboard", () => {
     if (await nextButton.isEnabled()) {
       // Get first user name on page 1
       const firstUserPage1 = await page
-        .getByRole("option")
+        .getByRole("button")
         .first()
         .locator("h3")
         .textContent()
@@ -153,7 +153,7 @@ test.describe("User Dashboard", () => {
 
       // Get first user name on page 2
       const firstUserPage2 = await page
-        .getByRole("option")
+        .getByRole("button")
         .first()
         .locator("h3")
         .textContent()
@@ -168,7 +168,7 @@ test.describe("User Dashboard", () => {
 
       // Should show original first user
       const backToFirstUser = await page
-        .getByRole("option")
+        .getByRole("button")
         .first()
         .locator("h3")
         .textContent()
@@ -178,7 +178,7 @@ test.describe("User Dashboard", () => {
 
   test("should disable Previous button on first page", async ({ page }) => {
     // Wait for users to load
-    await expect(page.getByRole("option").first()).toBeVisible({
+    await expect(page.getByRole("button").first()).toBeVisible({
       timeout: 10000,
     })
 
@@ -190,7 +190,7 @@ test.describe("User Dashboard", () => {
     page,
   }) => {
     // Wait for users to load
-    await expect(page.getByRole("option").first()).toBeVisible({
+    await expect(page.getByRole("button").first()).toBeVisible({
       timeout: 10000,
     })
 
@@ -205,7 +205,7 @@ test.describe("User Dashboard", () => {
 
   test("should display results count", async ({ page }) => {
     // Wait for users to load
-    await expect(page.getByRole("option").first()).toBeVisible({
+    await expect(page.getByRole("button").first()).toBeVisible({
       timeout: 10000,
     })
 
@@ -220,7 +220,7 @@ test.describe("User Dashboard", () => {
     await expect(
       page.getByRole("heading", { name: /prima user dashboard/i }),
     ).toBeVisible()
-    await expect(page.getByRole("option").first()).toBeVisible({
+    await expect(page.getByRole("button").first()).toBeVisible({
       timeout: 10000,
     })
   })

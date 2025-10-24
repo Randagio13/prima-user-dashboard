@@ -25,8 +25,7 @@ export function UserListItem({ user, isSelected, onClick }: UserListItemProps) {
       onClick={() => onClick(user)}
       className="cursor-pointer w-full p-4 border rounded-lg transition-all duration-200 text-left hover:shadow-md hover:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary"
       aria-label={`Select ${user.name}`}
-      role="option"
-      aria-selected={isSelected}
+      aria-pressed={isSelected}
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1 min-w-0">

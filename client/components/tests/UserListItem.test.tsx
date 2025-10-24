@@ -30,7 +30,7 @@ describe("UserListItem", () => {
   it("renders user role as a badge", () => {
     render(<UserListItem {...defaultProps} />)
 
-    const roleBadge = screen.getByRole("button", { name: "Admin" })
+    const roleBadge = screen.getByText("Admin")
     expect(roleBadge).toBeInTheDocument()
   })
 
@@ -43,7 +43,7 @@ describe("UserListItem", () => {
   it("applies correct role colors for Admin", () => {
     render(<UserListItem {...defaultProps} />)
 
-    const roleBadge = screen.getByRole("button", { name: "Admin" })
+    const roleBadge = screen.getByText("Admin")
     expect(roleBadge).toHaveClass("bg-red-100")
     expect(roleBadge).toHaveClass("text-red-800")
   })
@@ -52,7 +52,7 @@ describe("UserListItem", () => {
     const editorUser: User = { ...mockUser, role: "Editor" }
     render(<UserListItem {...defaultProps} user={editorUser} />)
 
-    const roleBadge = screen.getByRole("button", { name: "Editor" })
+    const roleBadge = screen.getByText("Editor")
     expect(roleBadge).toHaveClass("bg-blue-100")
     expect(roleBadge).toHaveClass("text-blue-800")
   })
@@ -61,7 +61,7 @@ describe("UserListItem", () => {
     const viewerUser: User = { ...mockUser, role: "Viewer" }
     render(<UserListItem {...defaultProps} user={viewerUser} />)
 
-    const roleBadge = screen.getByRole("button", { name: "Viewer" })
+    const roleBadge = screen.getByText("Viewer")
     expect(roleBadge).toHaveClass("bg-gray-100")
     expect(roleBadge).toHaveClass("text-gray-800")
   })
@@ -86,38 +86,38 @@ describe("UserListItem", () => {
     const user = userEvent.setup()
     render(<UserListItem {...defaultProps} onClick={handleClick} />)
 
-    const button = screen.getByRole("option", { name: "Select John Doe" })
+    const button = screen.getByRole("button", { name: "Select John Doe" })
     await user.click(button)
 
     expect(handleClick).toHaveBeenCalledTimes(1)
     expect(handleClick).toHaveBeenCalledWith(mockUser)
   })
 
-  it("sets aria-selected to false when not selected", () => {
+  it("sets aria-pressed to false when not selected", () => {
     render(<UserListItem {...defaultProps} isSelected={false} />)
 
-    const button = screen.getByRole("option", { name: "Select John Doe" })
-    expect(button).toHaveAttribute("aria-selected", "false")
+    const button = screen.getByRole("button", { name: "Select John Doe" })
+    expect(button).toHaveAttribute("aria-pressed", "false")
   })
 
-  it("sets aria-selected to true when selected", () => {
+  it("sets aria-pressed to true when selected", () => {
     render(<UserListItem {...defaultProps} isSelected={true} />)
 
-    const button = screen.getByRole("option", { name: "Select John Doe" })
-    expect(button).toHaveAttribute("aria-selected", "true")
+    const button = screen.getByRole("button", { name: "Select John Doe" })
+    expect(button).toHaveAttribute("aria-pressed", "true")
   })
 
   it("has correct accessibility role", () => {
     render(<UserListItem {...defaultProps} />)
 
-    const button = screen.getByRole("option")
+    const button = screen.getByRole("button")
     expect(button).toBeInTheDocument()
   })
 
   it("has correct aria-label", () => {
     render(<UserListItem {...defaultProps} />)
 
-    const button = screen.getByRole("option", { name: "Select John Doe" })
+    const button = screen.getByRole("button", { name: "Select John Doe" })
     expect(button).toBeInTheDocument()
   })
 
@@ -152,7 +152,7 @@ describe("UserListItem", () => {
     const user = userEvent.setup()
     render(<UserListItem {...defaultProps} onClick={handleClick} />)
 
-    const button = screen.getByRole("option", { name: "Select John Doe" })
+    const button = screen.getByRole("button", { name: "Select John Doe" })
     button.focus()
     expect(button).toHaveFocus()
 

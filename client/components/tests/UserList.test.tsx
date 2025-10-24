@@ -104,34 +104,34 @@ describe("UserList", () => {
     it("renders correct number of user items", () => {
       render(<UserList {...defaultProps} />)
 
-      const userOptions = screen.getAllByRole("option")
+      const userOptions = screen.getAllByRole("button")
       expect(userOptions).toHaveLength(3)
     })
 
     it("passes correct isSelected prop when user is selected", () => {
       render(<UserList {...defaultProps} selectedUser={mockUsers[0]} />)
 
-      const selectedButton = screen.getByRole("option", {
+      const selectedButton = screen.getByRole("button", {
         name: "Select Alice Johnson",
       })
-      expect(selectedButton).toHaveAttribute("aria-selected", "true")
+      expect(selectedButton).toHaveAttribute("aria-pressed", "true")
     })
 
     it("passes correct isSelected prop when user is not selected", () => {
       render(<UserList {...defaultProps} selectedUser={mockUsers[0]} />)
 
-      const notSelectedButton = screen.getByRole("option", {
+      const notSelectedButton = screen.getByRole("button", {
         name: "Select Bob Smith",
       })
-      expect(notSelectedButton).toHaveAttribute("aria-selected", "false")
+      expect(notSelectedButton).toHaveAttribute("aria-pressed", "false")
     })
 
     it("passes correct isSelected prop when no user is selected", () => {
       render(<UserList {...defaultProps} selectedUser={null} />)
 
-      const userOptions = screen.getAllByRole("option")
+      const userOptions = screen.getAllByRole("button")
       userOptions.forEach((option) => {
-        expect(option).toHaveAttribute("aria-selected", "false")
+        expect(option).toHaveAttribute("aria-pressed", "false")
       })
     })
   })
@@ -142,7 +142,7 @@ describe("UserList", () => {
       const user = userEvent.setup()
       render(<UserList {...defaultProps} onSelectUser={handleSelectUser} />)
 
-      const aliceButton = screen.getByRole("option", {
+      const aliceButton = screen.getByRole("button", {
         name: "Select Alice Johnson",
       })
       await user.click(aliceButton)
@@ -156,7 +156,7 @@ describe("UserList", () => {
       const user = userEvent.setup()
       render(<UserList {...defaultProps} onSelectUser={handleSelectUser} />)
 
-      const bobButton = screen.getByRole("option", {
+      const bobButton = screen.getByRole("button", {
         name: "Select Bob Smith",
       })
       await user.click(bobButton)
@@ -208,7 +208,7 @@ describe("UserList", () => {
       render(<UserList {...defaultProps} users={[mockUsers[0]]} />)
 
       expect(screen.getByText("Alice Johnson")).toBeInTheDocument()
-      expect(screen.getAllByRole("option")).toHaveLength(1)
+      expect(screen.getAllByRole("button")).toHaveLength(1)
     })
   })
 })

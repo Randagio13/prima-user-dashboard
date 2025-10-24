@@ -41,6 +41,7 @@ export default defineConfig({
     setupFiles: path.resolve(__dirname, "./vitest.setup.ts"),
     css: true,
     globals: true,
+    exclude: ["**/node_modules/**", "**/dist/**", "**/e2e/**"],
     coverage: {
       provider: "v8",
       reporter: ["text", "html"],
